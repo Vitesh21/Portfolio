@@ -1,0 +1,138 @@
+.skills-container {
+  padding: 20px;
+
+  h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  hr {
+    margin-bottom: 30px;
+  }
+
+  .skill-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .skill-category {
+    flex: 1;
+    max-width: calc(33.33% - 40px); /* Adjust width based on number of columns */
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .progress-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      animation: fadeInUp 1s ease forwards;
+
+      .skill-name {
+        width: 150px;
+        font-size: 2em;
+        margin-right: 15px;
+      }
+
+      .progress {
+        flex: 1;
+        height: 20px;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .progress-bar {
+          background-color: #007BFF;
+          height: 100%;
+          width: 0; /* Start with 0 width */
+          transition: width 1s ease; /* Smooth transition for the width */
+        }
+      }
+    }
+  }
+
+  .courses {
+    margin-top: 40px;
+    animation: fadeInUp 1s ease forwards;
+
+    h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style-type: disc; /* Add bullet points */
+      padding: 0;
+
+      li {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .skill-categories {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .skill-category {
+      max-width: 100%;
+
+      h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      .progress-container {
+        .skill-name {
+          font-size: 1.5em;
+          margin-right: 10px;
+        }
+
+        .progress {
+          height: 15px;
+
+          .progress-bar {
+            width: var(--skill-level, 0%); /* Set the width using a CSS variable */
+          }
+        }
+      }
+    }
+
+    .courses {
+      h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        li {
+          font-size: 1.5em;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

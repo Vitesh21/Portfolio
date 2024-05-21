@@ -1,0 +1,112 @@
+.resume-container {
+  padding: 40px;
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+  font-size: 1.5em; // Base font size for the entire container
+
+  h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  hr {
+    margin-bottom: 30px;
+    border: none;
+    border-top: 2px solid #007BFF;
+    width: 50%;
+    margin: 20px auto;
+  }
+
+  .section {
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease forwards;
+
+    h2 {
+      font-size: 2em; // Adjusted to fit within the overall font size consistency
+      margin-bottom: 20px;
+      color: #007BFF;
+      position: relative;
+      display: inline-block;
+
+      &:before {
+        content: '';
+        width: 30px;
+        height: 5px;
+        background: #007BFF;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        border-radius: 3px;
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+
+      li {
+        font-size: inherit; // Inherits the base font size of 1.5em
+        margin-bottom: 10px;
+      }
+    }
+
+    p {
+      font-size: inherit; // Inherits the base font size of 1.5em
+      margin: 5px 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes progressBar {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  .progress {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    height: 20px;
+    width: 100%;
+  }
+
+  .progress-bar {
+    background-color: #007BFF;
+    height: 100%;
+    animation: progressBar 2s ease forwards;
+  }
+
+  .project {
+    margin-bottom: 15px;
+
+    h3 {
+      display: flex;
+      align-items: center;
+    }
+
+    .project-logo {
+      width: 30px; // Adjust the size of the logo
+      height: 30px; // Adjust the size of the logo
+      margin-left: 8px; // Space between title and logo
+    }
+  }
+}
