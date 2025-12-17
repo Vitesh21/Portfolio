@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import { FaArrowDown, FaGithub, FaLinkedin } from "react-icons/fa";
 import './styles.scss';
 import profileImage from '../../assets/images/20230217_080249.jpg';
@@ -28,11 +27,18 @@ const Home = () => {
     }
   }, []);
 
-  const scrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const offset = 70;
+      const elementPosition = aboutSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
@@ -75,13 +81,31 @@ const Home = () => {
           </p>
 
           <div className="home__cta">
-            <Link to="/contact" className="home__button home__button--primary">
+            <a href="#contact" className="home__button home__button--primary" onClick={(e) => {
+              e.preventDefault();
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                const offset = 70;
+                const elementPosition = contactSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+              }
+            }}>
               <span>Hire Me</span>
               <div className="home__button-glow"></div>
-            </Link>
-            <Link to="/resume" className="home__button home__button--secondary">
+            </a>
+            <a href="#resume" className="home__button home__button--secondary" onClick={(e) => {
+              e.preventDefault();
+              const resumeSection = document.getElementById('resume');
+              if (resumeSection) {
+                const offset = 70;
+                const elementPosition = resumeSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+              }
+            }}>
               <span>View Resume</span>
-            </Link>
+            </a>
           </div>
 
           <div className="home__social">
@@ -112,7 +136,7 @@ const Home = () => {
         </div>
       </div>
 
-      <button className="home__scroll-indicator" onClick={scrollToContent}>
+      <button className="home__scroll-indicator" onClick={scrollToAbout}>
         <FaArrowDown />
       </button>
     </div>

@@ -9,53 +9,53 @@
   --bg-primary: #0a0a0f;
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #16213e;
-  
+
   /* Light Theme Colors (will be applied via data-theme="light") */
   --bg-primary-light: #ffffff;
   --bg-secondary-light: #f8f9fa;
   --bg-tertiary-light: #e9ecef;
-  
+
   /* Gradient Colors */
   --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --accent-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --accent-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --accent-gradient-hover: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-  
+
   /* Accent Colors */
   --accent-purple: #667eea;
   --accent-purple-dark: #764ba2;
   --accent-pink: #f093fb;
   --accent-cyan: #4facfe;
   --accent-blue: #00f2fe;
-  
+
   /* Text Colors - Dark Theme */
   --text-primary: #ffffff;
   --text-secondary: #b4b4b4;
   --text-tertiary: #8a8a8a;
-  
+
   /* Text Colors - Light Theme */
   --text-primary-light: #1a1a2e;
   --text-secondary-light: #4a4a4a;
   --text-tertiary-light: #6a6a6a;
-  
+
   /* Glassmorphism */
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-bg-light: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-border-light: rgba(0, 0, 0, 0.1);
-  
+
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
   --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.3);
   --shadow-glow-pink: 0 0 20px rgba(240, 147, 251, 0.3);
-  
+
   /* Light Theme Shadows */
   --shadow-sm-light: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md-light: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-lg-light: 0 8px 32px rgba(0, 0, 0, 0.15);
-  
+
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -63,24 +63,24 @@
   --spacing-lg: 3rem;
   --spacing-xl: 4rem;
   --spacing-xxl: 6rem;
-  
+
   /* Border Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 50%;
-  
+
   /* Blur */
   --blur-sm: 10px;
   --blur-md: 20px;
   --blur-lg: 30px;
-  
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  
+
   /* Z-index */
   --z-navbar: 1000;
   --z-modal: 2000;
@@ -92,14 +92,14 @@
   --bg-primary: var(--bg-primary-light);
   --bg-secondary: var(--bg-secondary-light);
   --bg-tertiary: var(--bg-tertiary-light);
-  
+
   --text-primary: var(--text-primary-light);
   --text-secondary: var(--text-secondary-light);
   --text-tertiary: var(--text-tertiary-light);
-  
+
   --glass-bg: var(--glass-bg-light);
   --glass-border: var(--glass-border-light);
-  
+
   --shadow-sm: var(--shadow-sm-light);
   --shadow-md: var(--shadow-md-light);
   --shadow-lg: var(--shadow-lg-light);
@@ -117,8 +117,12 @@
 }
 
 html {
-  font-size: 62.5%; /* 1rem = 10px */
+  font-size: 62.5%;
+  /* 1rem = 10px */
   height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+  /* Offset for fixed navbar */
 }
 
 body {
@@ -134,9 +138,18 @@ body {
 }
 
 #root {
-  height: 100%;
   min-height: 100vh;
 }
+
+/* Section wrapper styling */
+#home,
+#about,
+#skills,
+#resume,
+#contact {
+  position: relative;
+}
+
 
 /* ============================================
    GLOBAL ANIMATIONS
@@ -147,6 +160,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -158,6 +172,7 @@ body {
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -169,6 +184,7 @@ body {
     opacity: 0;
     transform: translateX(-40px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -180,6 +196,7 @@ body {
     opacity: 0;
     transform: translateX(40px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -187,18 +204,24 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
 }
 
 @keyframes glow {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
   }
+
   50% {
     box-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
   }
@@ -208,18 +231,23 @@ body {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.05);
   }
