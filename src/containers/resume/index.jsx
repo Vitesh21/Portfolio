@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGraduationCap, FaCode, FaTrophy, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGraduationCap, FaCode, FaTrophy, FaGithub, FaExternalLinkAlt, FaBriefcase } from "react-icons/fa";
 import './styles.scss';
 import githubLogo from '../../assets/images/WhatsApp Image 2024-02-19 at 23.06.59_80a0a562.jpg';
 import anotherLogo from '../../assets/images/coding-logo-design-template-vector.jpg';
@@ -17,6 +17,27 @@ const Resume = () => {
       degree: "Senior Secondary Education",
       year: "2020 - 2022",
       description: "Completed 12th grade with strong foundation in Mathematics and Science"
+    }
+  ];
+
+  const experience = [
+    {
+      company: "Newton School",
+      role: "Technical Intern (Interview)",
+      type: "Internship",
+      duration: "May 2025 - Jul 2025",
+      period: "3 months",
+      location: "Bengaluru, Karnataka, India · Remote",
+      skills: ["Algorithms", "Mathematics", "Technical Interviews"]
+    },
+    {
+      company: "ChaturaIT Learnings",
+      role: "DSA Problem Setter Intern",
+      type: "Part-time",
+      duration: "Jul 2024 - Sep 2024",
+      period: "3 months",
+      location: "Hyderabad, Telangana, India · Remote",
+      skills: ["Algorithms", "Python", "Data Structures", "Problem Solving"]
     }
   ];
 
@@ -76,7 +97,7 @@ const Resume = () => {
         <h1 className="resume-title">
           My <span className="gradient-text">Resume</span>
         </h1>
-        <p className="resume-subtitle">Education, Projects & Achievements</p>
+        <p className="resume-subtitle">Education, Experience, Projects & Achievements</p>
       </div>
 
       {/* Education Section */}
@@ -98,6 +119,40 @@ const Resume = () => {
                 <h3 className="timeline-item__title">{edu.degree}</h3>
                 <p className="timeline-item__subtitle">{edu.institution}</p>
                 <p className="timeline-item__description">{edu.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="resume-section">
+        <h2 className="resume-section__title">
+          <FaBriefcase className="resume-section__icon" />
+          Work Experience
+        </h2>
+        <div className="timeline">
+          {experience.map((exp, index) => (
+            <div
+              className="timeline-item glass-card"
+              key={index}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <div className="timeline-item__marker"></div>
+              <div className="timeline-item__content">
+                <span className="timeline-item__year">{exp.duration}</span>
+                <h3 className="timeline-item__title">{exp.role}</h3>
+                <p className="timeline-item__subtitle">
+                  {exp.company} · {exp.type}
+                </p>
+                <p className="timeline-item__location">
+                  📍 {exp.location}
+                </p>
+                <div className="timeline-item__skills">
+                  {exp.skills.map((skill, i) => (
+                    <span key={i} className="skill-tag">{skill}</span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
