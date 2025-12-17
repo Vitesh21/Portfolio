@@ -8,19 +8,21 @@ import Resume from './containers/resume';
 import Skills from './containers/skills';
 import Contact from './containers/contact';
 import Footer from "./components/footer";
+import ThemeToggle from "./components/ThemeToggle";
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route index path='/' element={<Home/>} />
-        <Route path='/about' element={<About/>} />
+        <Route index path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
         <Route path='/resume' element={<Resume />} />
         <Route path='/skills' element={<Skills />} />
-     
+
         <Route path='/contact' element={<Contact />} />
       </Routes>
-      <Footer/>
+      <ThemeToggle />
+      <Footer />
     </div>
   );
 }

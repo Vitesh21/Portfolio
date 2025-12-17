@@ -1,131 +1,253 @@
 .about-container {
-  padding: 20px;
-  animation: fadeIn 0.5s ease; /* Add fade-in animation */
+  min-height: 100vh;
+  padding: calc(70px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-  h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
+.about-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+  animation: fadeInUp 0.8s ease;
+}
+
+.about-title {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+}
+
+.about-subtitle {
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.about-card {
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
   }
 
-  hr {
-    margin-bottom: 20px;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-glow);
+    border-color: transparent;
+
+    &::before {
+      opacity: 0.05;
+    }
+
+    .about-card__icon {
+      transform: scale(1.1) rotate(5deg);
+      background: var(--accent-gradient);
+      color: white;
+    }
   }
 
-  .content-container {
+  &__icon {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-md);
+    background: var(--glass-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    color: var(--accent-purple);
+    transition: all var(--transition-normal);
+  }
+
+  &__title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  &__description {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+
+    strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &--highlight {
+    grid-column: span 2;
+
+    @media (max-width: 768px) {
+      grid-column: span 1;
+    }
+  }
+}
+
+.about-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+
+  &:hover {
+    background: var(--accent-gradient);
+    border-color: transparent;
+    transform: translateX(5px);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+.about-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+
+  &__item {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--glass-border);
 
-    .text-container {
-      flex: 1;
-
-      h2 {
-        font-size: 2.5em;
-        margin-top: 10px;
-      }
-
-      p {
-        margin: 10px 0;
-        font-size: 2em;
-      }
-
-      ul {
-        list-style-type: none;
-        padding: 0;
-
-        li {
-          margin: 5px 0;
-
-          a {
-            color: #007BFF;
-            text-decoration: none;
-            font-size: 2em;
-
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-
-      hr {
-        margin: 10px 0;
-      }
-
-      p {
-        strong {
-          display: inline-block;
-          width: 150px;
-          font-size: 1.4em;
-        }
-      }
-    }
-
-    .image-container {
-      margin-left: 20px;
-
-      img {
-        margin-top: 80px;
-        margin-right: 50px;
-        height: 350px;
-        max-width: 450px;
-        border-radius: 8px;
-      }
+    &:last-child {
+      border-bottom: none;
     }
   }
 
-  @media (max-width: 768px) {
-    .content-container {
+  &__label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  &__value {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    text-align: right;
+  }
+}
+
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+
+  &:hover {
+    transform: translateX(5px);
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--accent-purple);
+  }
+}
+
+.tech-icon {
+  font-size: 2.4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-container {
+    padding: calc(60px + var(--spacing-lg)) var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .about-title {
+    font-size: 3.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.6rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .about-card {
+    padding: var(--spacing-md);
+
+    &__icon {
+      width: 60px;
+      height: 60px;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__description {
+      font-size: 1.4rem;
+    }
+  }
+
+  .about-info {
+    &__item {
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
 
-      .text-container {
-        h2 {
-          font-size: 1.8em;
-        }
-
-        p {
-          font-size: 1.2em;
-        }
-
-        ul {
-          li {
-            a {
-              font-size: 1.2em;
-            }
-          }
-        }
-
-        p {
-          strong {
-            font-size: 1.2em;
-            width: auto;
-          }
-        }
-      }
-
-      .image-container {
-        margin-top: 20px;
-        margin-left: 0;
-
-        img {
-          margin-top: 0;
-          margin-right: 0;
-          height: auto;
-          max-width: 100%;
-        }
-      }
+    &__value {
+      text-align: left;
     }
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .tech-stack {
+    grid-template-columns: 1fr;
   }
 }

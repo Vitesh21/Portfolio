@@ -1,112 +1,416 @@
 .resume-container {
-  padding: 40px;
-  max-width: 800px;
-  margin: auto;
-  font-family: Arial, sans-serif;
-  color: #333;
-  font-size: 1.5em; // Base font size for the entire container
+  min-height: 100vh;
+  padding: calc(70px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-  h1 {
-    font-size: 3.5em;
-    margin-bottom: 10px;
-    text-align: center;
-    animation: fadeIn 1s ease forwards;
+.resume-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+  animation: fadeInUp 0.8s ease;
+}
+
+.resume-title {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+}
+
+.resume-subtitle {
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.resume-section {
+  margin-bottom: var(--spacing-xxl);
+
+  &__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-family: 'Poppins', sans-serif;
   }
 
-  hr {
-    margin-bottom: 30px;
-    border: none;
-    border-top: 2px solid #007BFF;
-    width: 50%;
-    margin: 20px auto;
+  &__icon {
+    color: var(--accent-purple);
+    filter: drop-shadow(0 0 10px var(--accent-purple));
+  }
+}
+
+/* Timeline Styles */
+.timeline {
+  position: relative;
+  padding-left: var(--spacing-xl);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent-gradient);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  animation: fadeInUp 0.6s ease both;
+  transition: all var(--transition-normal);
+
+  &:last-child {
+    margin-bottom: 0;
   }
 
-  .section {
-    margin-bottom: 40px;
-    animation: fadeIn 1s ease forwards;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+    border-radius: var(--radius-lg);
+  }
 
-    h2 {
-      font-size: 2em; // Adjusted to fit within the overall font size consistency
-      margin-bottom: 20px;
-      color: #007BFF;
-      position: relative;
-      display: inline-block;
+  &:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-glow);
+    border-color: transparent;
 
-      &:before {
-        content: '';
-        width: 30px;
-        height: 5px;
-        background: #007BFF;
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        border-radius: 3px;
+    &::before {
+      opacity: 0.05;
+    }
+
+    .timeline-item__marker {
+      transform: scale(1.5);
+      box-shadow: 0 0 20px var(--accent-purple);
+    }
+  }
+
+  &__marker {
+    position: absolute;
+    left: calc(-1 * var(--spacing-xl) - 8px);
+    top: var(--spacing-lg);
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    background: var(--accent-gradient);
+    border: 3px solid var(--bg-primary);
+    transition: all var(--transition-normal);
+    z-index: 1;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__year {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    width: fit-content;
+  }
+
+  &__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  &__subtitle {
+    font-size: 1.6rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  &__description {
+    font-size: 1.4rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+  }
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.project-card {
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+  animation: fadeInUp 0.6s ease both;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-glow);
+    border-color: transparent;
+
+    &::before {
+      opacity: 0.05;
+    }
+
+    .project-card__logo {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  &__logo {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    border: 2px solid var(--glass-border);
+    transition: all var(--transition-normal);
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    flex: 1;
+  }
+
+  &__description {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  &__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  &__tech-tag {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    font-size: 1.2rem;
+    color: var(--accent-purple);
+    font-weight: 500;
+  }
+
+  &__actions {
+    margin-top: auto;
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--accent-gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-glow);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(102, 126, 234, 0.5);
+    }
+
+    &--live {
+      background: var(--accent-gradient-2);
+      box-shadow: var(--shadow-glow-pink);
+
+      &:hover {
+        box-shadow: 0 0 25px rgba(240, 147, 251, 0.5);
       }
     }
+  }
+}
 
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
+/* Achievements Grid */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
 
-      li {
-        font-size: inherit; // Inherits the base font size of 1.5em
-        margin-bottom: 10px;
-      }
+.achievement-card {
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all var(--transition-normal);
+  animation: fadeInUp 0.6s ease both;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+    border-color: transparent;
+
+    &::before {
+      opacity: 0.05;
     }
 
-    p {
-      font-size: inherit; // Inherits the base font size of 1.5em
-      margin: 5px 0;
+    .achievement-card__icon {
+      transform: scale(1.2) rotate(10deg);
     }
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  &__icon {
+    font-size: 6rem;
+    margin-bottom: var(--spacing-md);
+    display: inline-block;
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  &__description {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .resume-container {
+    padding: calc(60px + var(--spacing-lg)) var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .resume-title {
+    font-size: 3.5rem;
+  }
+
+  .resume-subtitle {
+    font-size: 1.6rem;
+  }
+
+  .resume-section {
+    &__title {
+      font-size: 2.4rem;
     }
   }
 
-  @keyframes progressBar {
-    from {
-      width: 0;
+  .timeline {
+    padding-left: var(--spacing-md);
+  }
+
+  .timeline-item {
+    padding: var(--spacing-md);
+
+    &__marker {
+      left: calc(-1 * var(--spacing-md) - 8px);
     }
-    to {
-      width: 100%;
+
+    &__title {
+      font-size: 1.8rem;
+    }
+
+    &__subtitle {
+      font-size: 1.4rem;
+    }
+
+    &__description {
+      font-size: 1.3rem;
     }
   }
 
-  .progress {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    height: 20px;
-    width: 100%;
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 
-  .progress-bar {
-    background-color: #007BFF;
-    height: 100%;
-    animation: progressBar 2s ease forwards;
-  }
+  .project-card {
+    padding: var(--spacing-md);
 
-  .project {
-    margin-bottom: 15px;
-
-    h3 {
-      display: flex;
-      align-items: center;
+    &__title {
+      font-size: 1.8rem;
     }
 
-    .project-logo {
-      width: 30px; // Adjust the size of the logo
-      height: 30px; // Adjust the size of the logo
-      margin-left: 8px; // Space between title and logo
+    &__description {
+      font-size: 1.3rem;
+    }
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .achievement-card {
+    padding: var(--spacing-md);
+
+    &__icon {
+      font-size: 5rem;
+    }
+
+    &__title {
+      font-size: 1.8rem;
+    }
+
+    &__description {
+      font-size: 1.3rem;
     }
   }
 }

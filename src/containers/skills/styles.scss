@@ -1,138 +1,311 @@
 .skills-container {
-  padding: 20px;
+  min-height: 100vh;
+  padding: calc(70px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-  h1 {
-    font-size: 3.5em;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease forwards;
-  }
+.skills-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+  animation: fadeInUp 0.8s ease;
+}
 
-  hr {
-    margin-bottom: 30px;
-  }
+.skills-title {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+}
 
-  .skill-categories {
+.skills-subtitle {
+  font-size: 1.8rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.skills-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+}
+
+.skills-section {
+  &__title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 40px;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-family: 'Poppins', sans-serif;
   }
 
-  .skill-category {
-    flex: 1;
-    max-width: calc(33.33% - 40px); /* Adjust width based on number of columns */
-    margin-bottom: 40px;
-
-    h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    .progress-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      animation: fadeInUp 1s ease forwards;
-
-      .skill-name {
-        width: 150px;
-        font-size: 2em;
-        margin-right: 15px;
-      }
-
-      .progress {
-        flex: 1;
-        height: 20px;
-        background-color: #f0f0f0;
-        border-radius: 5px;
-        overflow: hidden;
-        position: relative;
-
-        .progress-bar {
-          background-color: #007BFF;
-          height: 100%;
-          width: 0; /* Start with 0 width */
-          transition: width 1s ease; /* Smooth transition for the width */
-        }
-      }
-    }
+  &__icon {
+    font-size: 3rem;
   }
 
-  .courses {
-    margin-top: 40px;
-    animation: fadeInUp 1s ease forwards;
+  &--full {
+    grid-column: 1 / -1;
+  }
+}
 
-    h2 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
 
-    ul {
-      list-style-type: disc; /* Add bullet points */
-      padding: 0;
+.skill-card {
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+  animation: fadeInUp 0.6s ease both;
+  position: relative;
+  overflow: hidden;
 
-      li {
-        font-size: 2em;
-        margin-bottom: 10px;
-      }
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
   }
 
-  @media (max-width: 768px) {
-    .skill-categories {
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+    border-color: transparent;
+
+    &::before {
+      opacity: 0.05;
     }
 
-    .skill-category {
-      max-width: 100%;
-
-      h2 {
-        font-size: 2em;
-        margin-bottom: 10px;
-      }
-
-      .progress-container {
-        .skill-name {
-          font-size: 1.5em;
-          margin-right: 10px;
-        }
-
-        .progress {
-          height: 15px;
-
-          .progress-bar {
-            width: var(--skill-level, 0%); /* Set the width using a CSS variable */
-          }
-        }
-      }
+    .skill-card__icon {
+      transform: scale(1.2) rotate(10deg);
     }
 
-    .courses {
-      h2 {
-        font-size: 2em;
-        margin-bottom: 10px;
-      }
-
-      ul {
-        li {
-          font-size: 1.5em;
-          margin-bottom: 5px;
-        }
-      }
-    }
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
+    .skill-card__progress-glow {
       opacity: 1;
-      transform: translateY(0);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  &__icon {
+    font-size: 4rem;
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  &__category {
+    font-size: 1.3rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__progress-container {
+    position: relative;
+    height: 8px;
+    background: var(--glass-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+  }
+
+  &__progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 0 10px currentColor;
+  }
+
+  &__progress-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: shimmer 2s infinite;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  &__level {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__percentage {
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.course-card {
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: all var(--transition-normal);
+  animation: fadeInUp 0.6s ease both;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-gradient);
+    transform: scaleY(0);
+    transition: transform var(--transition-normal);
+  }
+
+  &:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-md);
+
+    &::before {
+      transform: scaleY(1);
+    }
+
+    .course-card__check {
+      background: var(--accent-gradient);
+      transform: scale(1.2) rotate(360deg);
+    }
+  }
+
+  &__check {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--glass-bg);
+    border: 2px solid var(--accent-purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--accent-purple);
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills-container {
+    padding: calc(60px + var(--spacing-lg)) var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .skills-title {
+    font-size: 3.5rem;
+  }
+
+  .skills-subtitle {
+    font-size: 1.6rem;
+  }
+
+  .skills-section {
+    &__title {
+      font-size: 2.2rem;
+    }
+
+    &__icon {
+      font-size: 2.4rem;
+    }
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .skill-card {
+    padding: var(--spacing-md);
+
+    &__icon {
+      font-size: 3rem;
+    }
+
+    &__name {
+      font-size: 1.8rem;
+    }
+
+    &__category {
+      font-size: 1.2rem;
+    }
+
+    &__percentage {
+      font-size: 2rem;
+    }
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-card {
+    padding: var(--spacing-md);
+
+    &__check {
+      width: 35px;
+      height: 35px;
+      font-size: 1.8rem;
+    }
+
+    &__name {
+      font-size: 1.4rem;
     }
   }
 }
