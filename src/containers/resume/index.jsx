@@ -22,6 +22,15 @@ const Resume = () => {
 
   const experience = [
     {
+      company: "314e Corporation",
+      role: "Software Development Engineer Intern",
+      type: "Internship",
+      duration: "Jan 2026 - Present",
+      period: "Ongoing",
+      location: "India · On-site",
+      skills: ["Document Management", "Dexit", "Full Stack Development", "Software Engineering"]
+    },
+    {
       company: "Newton School",
       role: "Technical Intern (Interview)",
       type: "Internship",
