@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaDatabase,
+  FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs,
   FaPython, FaJava
 } from "react-icons/fa";
 import {
@@ -13,6 +13,7 @@ const Skills = () => {
   const skillsRef = useRef(null);
 
   useEffect(() => {
+    const currentRef = skillsRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -22,13 +23,13 @@ const Skills = () => {
       { threshold: 0.1 }
     );
 
-    if (skillsRef.current) {
-      observer.observe(skillsRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (skillsRef.current) {
-        observer.unobserve(skillsRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
